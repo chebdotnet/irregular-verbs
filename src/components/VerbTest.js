@@ -5,17 +5,19 @@ var _ = require('underscore');
 
 export default class VerbTest extends PureComponent {
 
+
   constructor(props) {
     super(props)
-    let snuffledVerbs = _.shuffle(verbs)
+
+    this.snuffledVerbs = _.shuffle(verbs)
+
     this.state = {
-     verb: snuffledVerbs.pop(),
+     verb: this.snuffledVerbs.pop(),
      base: "",
      past: "",
-     perfect: ""
+     perfect: "",
+     answers: []
     }
-    var VerbsTypes = Object.freeze({"BASE":1, "PAST":2, "PERFECT":3})
-    var verbType = _.sample(VerbsTypes);
   }
 
   render(){
@@ -25,17 +27,19 @@ export default class VerbTest extends PureComponent {
             <form>
               <div className="form-row">
                 <div className="col">
-                  <input type="text" className="form-control" placeholder="Base form" onChange={this.updateBaseFormInputValue} />
+                  <input type="text" className="form-control" placeholder="Base form" value= {this.state.base} onChange={this.updateBaseFormInputValue} />
                 </div>
                 <div className="col">
-                  <input type="text" className="form-control" placeholder="Past form" />
+                  <input type="text" className="form-control" placeholder="Past form" value= {this.state.past} onChange={this.updatePastFormInputValue} />
                 </div>
                 <div className="col">
-                  <input type="text" className="form-control" placeholder="Perfect form" />
+                  <input type="text" className="form-control" placeholder="Perfect form" value= {this.state.perfect} onChange={this.updatePerfectFormInputValue} />
                 </div>
               </div>
               <div className="mt-3">
-                <a className="btn btn-primary" role="button" onClick={this.nextStep} >Next step &raquo;</a>
+                <a className="btn btn-primary" role="button" onClick={this.nextStep} >
+                  {this.state.finish ? "Finish test" : "Next step"} &raquo;
+                </a>
               </div>
             </form>
           </div>
@@ -62,9 +66,29 @@ export default class VerbTest extends PureComponent {
   }
 
   nextStep = () => {
-    this.setState({
+    const answer = {
+      verb: this.state.verb,
+      base: _.isEmpty(this.state.base) ? 'N/A' : this.state.base,
+      past: _.isEmpty(this.state.past) ? 'N/A' : this.state.past,
+      perfect: _.isEmpty(this.state.perfect) ? 'N/A' : this.state.perfect
+    }
 
-    });
+    this.state.answers.push(answer);
+
+    const verb = this.snuffledVerbs.pop()
+    if (this.snuffledVerbs.length > 0){
+      this.setState({
+          verb: verb,
+          base: "",
+          past: "",
+          perfect: "",
+          answers: this.state.answers,
+          finish: this.snuffledVerbs.length === 1 ? true : false
+      });
+    } else {
+      this.props.updateData(true, this.state.answers);
+    }
+
   }
 
 

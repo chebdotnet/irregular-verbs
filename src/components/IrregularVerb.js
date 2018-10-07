@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import BaseForm from './BaseForm'
 import PastForm from './PastForm'
 import PerfectForm from './PerfectForm'
+import StartTest from './StartTest'
 import verbs from '../verbs'
 
 var _ = require('underscore');
@@ -43,39 +44,23 @@ export default class IrregularVerb extends PureComponent {
   }
 
   render(){
-    //<p className="lead"></p>
     return (
-
-      <div className="form-row">
-        <div className="col">
-          <BaseForm verb={this.state.verb} updateData={this.updateData} />
+      <div className="container">
+        <div className="form-row">
+          <div className="col">
+            <BaseForm verb={this.state.verb} updateData={this.updateData} />
+          </div>
+          <div className="col">
+            <PastForm verb={this.state.verb} updateData={this.updateData} />
+          </div>
+          <div className="col">
+            <PerfectForm verb={this.state.verb} updateData={this.updateData} />
+          </div>
+          <p className="lead" />
         </div>
-        <div className="col">
-          <PastForm verb={this.state.verb} updateData={this.updateData} />
-        </div>
-        <div className="col">
-          <PerfectForm verb={this.state.verb} updateData={this.updateData} />
-        </div>
-        <p className="lead" />
+        <StartTest updateData={this.props.updateData} />
       </div>
-
     )
-
-    return (
-        <div className="container row">
-          <form>
-            <div className="col-sm">
-              <BaseForm verb={this.state.verb} updateData={this.updateData} />
-            </div>
-            <div className="col-sm">
-              <PastForm verb={this.state.verb} updateData={this.updateData} />
-            </div>
-            <div className="col-sm">
-              <PerfectForm verb={this.state.verb} updateData={this.updateData} />
-            </div>
-          </form>
-        </div>
-    );
   }
 
 
