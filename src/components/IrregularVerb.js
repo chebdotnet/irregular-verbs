@@ -3,7 +3,7 @@ import BaseForm from './BaseForm'
 import PastForm from './PastForm'
 import PerfectForm from './PerfectForm'
 import StartTest from './StartTest'
-import verbs from '../verbs'
+import verbs from '../fixtures/verbs'
 
 var _ = require('underscore');
 
@@ -30,7 +30,7 @@ export default class IrregularVerb extends PureComponent {
     return el;
   }
 
-  updateData = (type, value) => {
+  updateIrregularVerbData = (type, value) => {
      const element = this.findElement(type, value);
      if (!_.isNull(element)){
        this.setState({
@@ -48,17 +48,17 @@ export default class IrregularVerb extends PureComponent {
       <div className="container">
         <div className="form-row">
           <div className="col">
-            <BaseForm verb={this.state.verb} updateData={this.updateData} />
+            <BaseForm verb={this.state.verb} updateIrregularVerbData={this.updateIrregularVerbData} />
           </div>
           <div className="col">
-            <PastForm verb={this.state.verb} updateData={this.updateData} />
+            <PastForm verb={this.state.verb} updateIrregularVerbData={this.updateIrregularVerbData} />
           </div>
           <div className="col">
-            <PerfectForm verb={this.state.verb} updateData={this.updateData} />
+            <PerfectForm verb={this.state.verb} updateIrregularVerbData={this.updateIrregularVerbData} />
           </div>
           <p className="lead" />
         </div>
-        <StartTest updateData={this.props.updateData} />
+        <StartTest startTest={this.props.startTest} />
       </div>
     )
   }

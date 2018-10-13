@@ -15,6 +15,7 @@ class App extends PureComponent {
     this.state = {
       showIrregularVerb: true,
       showTestResult: false,
+      level: 0,
       answers: []
     }
   }
@@ -22,21 +23,29 @@ class App extends PureComponent {
   render () {
     return (
       <main role="main" className="container">
-        <div className="jumbotron">          
+        <div className="jumbotron">
           <h1>Irregular verbs</h1>
           <p className="lead">This example is a quick exercise to check out skills for irregular verbs in English.</p>
-          {this.state.showIrregularVerb ? <IrregularVerb updateData={this.updateData} /> : <VerbTest updateData={this.updateData} /> }
+          {this.state.showIrregularVerb ? <IrregularVerb startTest={this.startTest} /> : <VerbTest level={this.state.level} updateData={this.updateData} /> }
           {this.state.showTestResult ? <TestResult answers={this.state.answers} /> : null}
         </div>
       </main>
     );
   }
 
-  updateData = (value, answers) => {
+  updateData = (showIrregularVerb, answers) => {
     this.setState({
-      showIrregularVerb: value,
+      showIrregularVerb: showIrregularVerb,
       showTestResult: !_.isUndefined(answers),
       answers: answers
+    })
+  }
+
+  startTest = (showIrregularVerb, level) => {
+    this.setState({
+      showIrregularVerb: showIrregularVerb,
+      showTestResult: false,
+      level: level
     })
   }
 

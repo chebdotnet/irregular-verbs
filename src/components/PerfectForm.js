@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 
-import perfectFormVerbs from '../perfect-forms'
+import verbs from '../fixtures/verbs'
 
 export default class PerfectForm extends Component {
 
   render(){
-    const verbsPerfectFormElements = perfectFormVerbs.map((verb, index) =>
-      <option key = {verb.id} className="article-list__li" value={verb.perfect}>
+    const verbsPerfectFormElements = verbs.map((verb, index) =>
+      <option key = {'perfect'+verb.id} className="article-list__li" value={verb.perfect}>
         {verb.perfect}
       </option>
     )
@@ -20,7 +20,7 @@ export default class PerfectForm extends Component {
   }
 
   handleChange = (event) => {
-    this.props.updateData("perfect", event.target.value);
+    this.props.updateIrregularVerbData("perfect", event.target.value);
   }
 
 }

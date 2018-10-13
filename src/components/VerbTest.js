@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import verbs from '../verbs'
+import verbs from '../fixtures/verbs'
 
 var _ = require('underscore');
 
@@ -7,9 +7,9 @@ export default class VerbTest extends PureComponent {
 
 
   constructor(props) {
-    super(props)
+    super(props)    
 
-    this.snuffledVerbs = _.shuffle(verbs)
+    this.snuffledVerbs = _.shuffle(_.where(verbs, {level: props.level}))
 
     this.state = {
      verb: this.snuffledVerbs.pop(),

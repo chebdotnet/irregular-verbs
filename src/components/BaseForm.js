@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 
-import baseFormVerbs from '../base-forms'
+import verbs from '../fixtures/verbs'
 
 export default class BaseForm extends Component {
 
-  render(){
-    const verbsBaseFormElements = baseFormVerbs.map((verb, index) =>
-      <option key = {verb.id} className="article-list__li" value={verb.base}>
+  render(){    
+    const verbsBaseFormElements = verbs.map((verb, index) =>
+      <option key = {'base'+verb.id} className="article-list__li" value={verb.base}>
         {verb.base}
       </option>
     )
@@ -20,7 +20,7 @@ export default class BaseForm extends Component {
   };
 
   handleChange = (event) => {
-    this.props.updateData("base", event.target.value);
+    this.props.updateIrregularVerbData("base", event.target.value);
   };
 
 

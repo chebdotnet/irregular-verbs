@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 
-import pastFormVerbs from '../past-forms'
+import verbs from '../fixtures/verbs'
 
 export default class PastForm extends Component {
 
   render(){
-    const verbsPastFormElements = pastFormVerbs.map((verb, index) =>
-      <option key={verb.id} className="article-list__li" value={verb.past}>
+    const verbsPastFormElements = verbs.map((verb, index) =>
+      <option key={'past'+verb.id} className="article-list__li" value={verb.past}>
           {verb.past}
       </option>
     )
@@ -20,7 +20,7 @@ export default class PastForm extends Component {
   }
 
   handleChange = (event) => {
-    this.props.updateData("past", event.target.value);
+    this.props.updateIrregularVerbData("past", event.target.value);
   };
 
 }
