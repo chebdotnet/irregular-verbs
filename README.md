@@ -2,4 +2,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 The app was created to check out skills for irregular verbs in English
 
-Was used then next technologies stack: react, underscore, bootstrap with main purpose to pick up these skills and improve qualification of mine
+Was used the next technologies stack: react, underscore, bootstrap with main purpose to pick up these skills and improve qualification of mine
